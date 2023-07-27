@@ -6,7 +6,7 @@
 /*   By: bkaztaou <bkaztaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:26:13 by bkaztaou          #+#    #+#             */
-/*   Updated: 2023/07/26 04:19:35 by bkaztaou         ###   ########.fr       */
+/*   Updated: 2023/07/27 00:46:14 by bkaztaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	initialize(t_window *win, t_map *map)
 {
 	map->x = 0;
 	map->y = 0;
+	map->matrice = NULL;
 	win->win_w = 800;
 	win->win_h = 800;
 }
@@ -53,6 +54,7 @@ int	main(int ac, char **av)
 	if (fd < 0)
 		ft_error("Can't read from this file.");
 	initialize(&win, &map);
+	read_map(fd, &map);
 	ft_init_map(&win);
 	mlx_loop(win.mlx);
 }

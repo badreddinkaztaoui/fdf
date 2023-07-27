@@ -6,7 +6,7 @@
 /*   By: bkaztaou <bkaztaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:54:06 by bkaztaou          #+#    #+#             */
-/*   Updated: 2023/07/26 04:31:41 by bkaztaou         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:56:06 by bkaztaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*read_file(int fd, char *stash)
 	int		readed;
 
 	readed = 1;
-	while (!ft_strchr(stash, '\n') && readed != 0)
+	while (!ft_newline(stash) && readed != 0)
 	{
 		buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 		if (!buff)

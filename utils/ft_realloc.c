@@ -6,13 +6,13 @@
 /*   By: bkaztaou <bkaztaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 04:11:31 by bkaztaou          #+#    #+#             */
-/*   Updated: 2023/07/26 04:13:35 by bkaztaou         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:45:22 by bkaztaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	*ft_realloc(char *buff, size_t o_size, size_t n_size)
+void	*ft_realloc(int *buff, size_t o_size, size_t n_size)
 {
 	void	*n_buff;
 	size_t	size;
