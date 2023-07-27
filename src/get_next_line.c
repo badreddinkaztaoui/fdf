@@ -6,7 +6,7 @@
 /*   By: bkaztaou <bkaztaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:54:06 by bkaztaou          #+#    #+#             */
-/*   Updated: 2023/07/26 18:56:06 by bkaztaou         ###   ########.fr       */
+/*   Updated: 2023/07/27 18:19:24 by bkaztaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*read_file(int fd, char *stash)
 		if ((!stash && readed == 0) || readed == -1)
 			return (free(buff), NULL);
 		buff[readed] = '\0';
-		stash = ft_strjoin_line(stash, buff);
+		stash = ft_strjoin(stash, buff);
 	}
 	return (stash);
 }

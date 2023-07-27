@@ -6,7 +6,7 @@
 /*   By: bkaztaou <bkaztaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:56:19 by bkaztaou          #+#    #+#             */
-/*   Updated: 2023/07/27 18:05:36 by bkaztaou         ###   ########.fr       */
+/*   Updated: 2023/07/27 18:22:36 by bkaztaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	free_matrice(char **matrice)
 	free(matrice);
 }
 
-int	dt_strlen(char **s)
+int	ft_dstrlen(char **s)
 {
 	int	i;
 
@@ -38,6 +38,7 @@ void	get_map_data(int fd, t_map *map)
 	char	**numbers;
 	char	*stash;
 
+	stash = NULL;
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -45,9 +46,8 @@ void	get_map_data(int fd, t_map *map)
 			break ;
 		stash = ft_strjoin(stash, line);
 		numbers = ft_split(line, ' ');
-		map->x = dt_strlen(numbers);
+		map->x = ft_dstrlen(numbers);
 		free_matrice(numbers);
-		free(line);
 		map->y++;
 	}
 	puts(stash);
