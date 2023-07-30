@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   ft_printmatrice.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkaztaou <bkaztaou@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bkaztaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/10 19:56:19 by bkaztaou          #+#    #+#             */
-/*   Updated: 2023/07/30 03:28:18 by bkaztaou         ###   ########.fr       */
+/*   Created: 2023/07/30 03:26:21 by bkaztaou          #+#    #+#             */
+/*   Updated: 2023/07/30 03:28:13 by bkaztaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	read_map(int fd, t_map *map)
+void	ft_printmatrice(t_map *map)
 {
-	char	*stash;
+	int	i;
+	int	j;
 
-	stash = ft_flatmap(fd, map);
-	ft_fillmatrice(stash, map);
-	ft_printmatrice(map);
+	i = -1;
+	while (++i < map->y)
+	{
+		j = -1;
+		while (++j < map->x)
+			printf("[%d] ", map->matrice[i][j]);
+		printf("\n");
+	}
 }

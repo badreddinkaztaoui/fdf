@@ -6,7 +6,7 @@
 #    By: bkaztaou <bkaztaou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/22 04:19:13 by bkaztaou          #+#    #+#              #
-#    Updated: 2023/07/26 04:32:39 by bkaztaou         ###   ########.fr        #
+#    Updated: 2023/07/27 23:56:17 by bkaztaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = fdf
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-MLXLIB = -L/usr/local/lib -lmlx -L/usr/lib -lXext -lm -lX11
+MLXLIB = -Lmlx -lmlx -framework OpenGL -framework AppKit
 LIBFT = -Llibft -lft
 RM = rm -rf
 

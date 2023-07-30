@@ -6,7 +6,7 @@
 /*   By: bkaztaou <bkaztaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:19:59 by bkaztaou          #+#    #+#             */
-/*   Updated: 2023/07/27 18:18:38 by bkaztaou         ###   ########.fr       */
+/*   Updated: 2023/07/30 03:25:58 by bkaztaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
+# include <math.h>
+/* For test only  */
 # include <stdio.h>
 
 # ifndef BUFFER_SIZE
@@ -52,5 +54,10 @@ void	read_map(int fd, t_map *map);
 void	ft_error(char *err);
 char	*ft_newline(char *str);
 char	*get_next_line(int fd);
+void	ft_freematrice(char **matrice);
+int		ft_matricelen(char **matrice);
+char	*ft_flatmap(int fd, t_map *map);
+void	ft_fillmatrice(char *stash, t_map *map);
+void	ft_printmatrice(t_map *map);
 
 #endif

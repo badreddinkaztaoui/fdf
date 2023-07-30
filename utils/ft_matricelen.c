@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   ft_matricelen.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkaztaou <bkaztaou@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bkaztaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/10 19:56:19 by bkaztaou          #+#    #+#             */
-/*   Updated: 2023/07/30 03:28:18 by bkaztaou         ###   ########.fr       */
+/*   Created: 2023/07/30 01:33:43 by bkaztaou          #+#    #+#             */
+/*   Updated: 2023/07/30 01:39:35 by bkaztaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	read_map(int fd, t_map *map)
+int	ft_matricelen(char **matrice)
 {
-	char	*stash;
+	int	i;
 
-	stash = ft_flatmap(fd, map);
-	ft_fillmatrice(stash, map);
-	ft_printmatrice(map);
+	i = 0;
+	while (matrice[i])
+		i++;
+	return (i);
 }
