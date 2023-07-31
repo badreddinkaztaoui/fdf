@@ -6,7 +6,7 @@
 /*   By: bkaztaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 01:39:45 by bkaztaou          #+#    #+#             */
-/*   Updated: 2023/07/30 01:46:25 by bkaztaou         ###   ########.fr       */
+/*   Updated: 2023/07/31 12:33:59 by bkaztaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_flatmap(int fd, t_map *map)
 	char	*line;
 	char	*stash;
 	char	**rows;
-	int		length;
+	char	*trim;
 
 	stash = NULL;
 	while (1)
@@ -25,14 +25,12 @@ char	*ft_flatmap(int fd, t_map *map)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
+		trim = ft_strtrim(line, "\n");
+		rows = ft_split(trim, ' ');
+		map->x = ft_matricelen(rows);
 		stash = ft_strjoin(stash, line);
-		rows = ft_split(line, ' ');
-		if (map->y == 0)
-			length = ft_matricelen(rows);
-		if (length != ft_matricelen(rows))
-			ft_error("Error while reading the map.");
-		map->x = length;
 		ft_freematrice(rows);
+		free(trim);
 		map->y++;
 	}
 	return (stash);

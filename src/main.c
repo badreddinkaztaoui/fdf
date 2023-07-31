@@ -6,25 +6,13 @@
 /*   By: bkaztaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 23:02:56 by bkaztaou          #+#    #+#             */
-/*   Updated: 2023/07/30 03:31:38 by bkaztaou         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bkaztaou <bkaztaou@student.1337.ma>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/08 18:26:13 by bkaztaou          #+#    #+#             */
-/*   Updated: 2023/07/29 23:01:48 by bkaztaou         ###   ########.fr       */
+/*   Updated: 2023/07/31 08:12:06 by bkaztaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	ft_mlx_pixel_put(t_image *image, int x, int y, int color)
+void	ft_putpixel(t_image *image, int x, int y, int color)
 {
 	char	*dst;
 
@@ -59,13 +47,11 @@ int	main(int ac, char **av)
 	t_window	win;
 	t_map		map;
 	int			fd;
-	char		*buff;
 
-	buff = NULL;
 	if (ac != 2)
 		ft_error("Please enter one argument. No more, no less.");
 	fd = open(av[1], O_RDONLY);
-	if (fd < 0 || read(fd, buff, 0) < 0)
+	if (fd < 0)
 		ft_error("Can't read from this file.");
 	initialize(&win, &map);
 	read_map(fd, &map);

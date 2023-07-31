@@ -6,7 +6,7 @@
 /*   By: bkaztaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 03:20:51 by bkaztaou          #+#    #+#             */
-/*   Updated: 2023/07/30 03:23:25 by bkaztaou         ###   ########.fr       */
+/*   Updated: 2023/07/31 09:07:46 by bkaztaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,13 @@ void	ft_fillmatrice(char *stash, t_map *map)
 		map->matrice[i] = malloc(sizeof(int) * map->x);
 	rows = ft_split(stash, '\n');
 	i = -1;
-	while (rows[++i])
+	while (++i < map->y)
 	{
 		column = ft_split(rows[i], ' ');
 		j = -1;
-		while (column[++j])
+		while (++j < map->x)
 			map->matrice[i][j] = ft_atoi(column[j]);
 		ft_freematrice(column);
 	}
 	ft_freematrice(rows);
-	free(stash);
 }
