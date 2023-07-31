@@ -6,7 +6,7 @@
 /*   By: bkaztaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 23:02:56 by bkaztaou          #+#    #+#             */
-/*   Updated: 2023/07/31 08:12:06 by bkaztaou         ###   ########.fr       */
+/*   Updated: 2023/07/31 13:26:07 by bkaztaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,22 @@ void	initialize(t_window *win, t_map *map)
 	win->win_h = 800;
 }
 
-void	ft_init_map(t_window *win)
+void	ft_init_map(int fd, t_image *img, t_map *map, t_window *win)
 {
-	t_image		img;
-
 	win->mlx = mlx_init();
-	img.img = mlx_new_image(win->mlx, win->win_w, win->win_h);
+	img->img = mlx_new_image(win->mlx, win->win_w, win->win_h);
 	win->mlx_win = mlx_new_window(win->mlx, win->win_w, win->win_h, "fdf");
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-			&img.endian);
-	mlx_put_image_to_window(win->mlx, win->mlx_win, img.img, 0, 0);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+			&img->line_length, &img->endian);
+	read_map(fd, img, map);
+	mlx_put_image_to_window(win->mlx, win->mlx_win, img->img, 0, 0);
 }
 
 int	main(int ac, char **av)
 {
 	t_window	win;
 	t_map		map;
+	t_image		img;
 	int			fd;
 
 	if (ac != 2)
@@ -54,8 +54,7 @@ int	main(int ac, char **av)
 	if (fd < 0)
 		ft_error("Can't read from this file.");
 	initialize(&win, &map);
-	read_map(fd, &map);
-	ft_init_map(&win);
+	ft_init_map(fd, &img, &map, &win);
 	mlx_loop(win.mlx);
 	return (0);
 }
