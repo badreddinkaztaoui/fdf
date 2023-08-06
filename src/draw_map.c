@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printmatrice.c                                  :+:      :+:    :+:   */
+/*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkaztaou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bkaztaou <bkaztaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/30 03:26:21 by bkaztaou          #+#    #+#             */
-/*   Updated: 2023/07/30 03:28:13 by bkaztaou         ###   ########.fr       */
+/*   Created: 2023/08/06 04:21:15 by bkaztaou          #+#    #+#             */
+/*   Updated: 2023/08/06 04:24:09 by bkaztaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	ft_printmatrice(t_map *map)
+void	draw_map(t_fdf *fdf)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	while (++i < map->y)
+	while (++i < fdf->map.y)
 	{
 		j = -1;
-		while (++j < map->x)
-			printf("[%d] ", map->matrice[i][j]);
-		printf("\n");
+		while (++j < fdf->map.x)
+		{
+			if (j + 1 < fdf->map.x)
+				bresenhams(fdf, ft_init_pt(i, j, fdf, 'x'));
+			if (i + 1 < fdf->map.y)
+				bresenhams(fdf, ft_init_pt(i, j, fdf, 'y'));
+		}
 	}
 }

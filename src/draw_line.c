@@ -6,7 +6,7 @@
 /*   By: bkaztaou <bkaztaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:23:35 by bkaztaou          #+#    #+#             */
-/*   Updated: 2023/07/31 16:33:12 by bkaztaou         ###   ########.fr       */
+/*   Updated: 2023/08/06 02:54:21 by bkaztaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	set_err(int dx, int dy)
 	return (-dy / 2);
 }
 
-void	bresenhams(t_image *img, t_point pt)
+void	bresenhams(t_fdf *fdf, t_point pt)
 {
 	int	dx;
 	int	dy;
@@ -38,9 +38,9 @@ void	bresenhams(t_image *img, t_point pt)
 	pt.xinc = set_incs(pt.x0, pt.x1);
 	pt.yinc = set_incs(pt.y0, pt.y1);
 	err = set_err(dx, dy);
-	while (pt.x0 != pt.x1 && pt.y0 != pt.y1)
+	while ((pt.x0 - pt.x1) || (pt.y0 - pt.y1))
 	{
-		ft_putpixel(img, pt.x0, pt.y0, 0xFF0000);
+		ft_putpixel(fdf, pt.x0, pt.y0, pt.color);
 		e2 = err;
 		if (e2 > -dx)
 		{
