@@ -6,7 +6,7 @@
 /*   By: bkaztaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 01:46:38 by bkaztaou          #+#    #+#             */
-/*   Updated: 2023/07/30 01:49:47 by bkaztaou         ###   ########.fr       */
+/*   Updated: 2023/08/06 11:13:41 by bkaztaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_freematrice(char **matrice)
 	int	i;
 
 	i = -1;
-	while (matrice[++i])
+	while (matrice && matrice[++i])
 		free(matrice[i]);
 	free(matrice);
 }

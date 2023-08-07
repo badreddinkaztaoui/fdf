@@ -6,7 +6,7 @@
 /*   By: bkaztaou <bkaztaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:56:19 by bkaztaou          #+#    #+#             */
-/*   Updated: 2023/08/06 04:24:31 by bkaztaou         ###   ########.fr       */
+/*   Updated: 2023/08/06 11:26:54 by bkaztaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ void	read_map(int fd, t_fdf *fdf)
 
 	stash = ft_flatmap(fd, &fdf->map);
 	ft_fillmatrice(stash, &fdf->map);
-	draw_map(fdf);
+	free(stash);
 }

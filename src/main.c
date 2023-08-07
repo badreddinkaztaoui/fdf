@@ -6,7 +6,7 @@
 /*   By: bkaztaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 23:02:56 by bkaztaou          #+#    #+#             */
-/*   Updated: 2023/08/06 03:53:39 by bkaztaou         ###   ########.fr       */
+/*   Updated: 2023/08/07 04:57:02 by bkaztaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,17 @@ void	ft_putpixel(t_fdf *fdf, int x, int y, int color)
 	}
 }
 
-void	ft_set_values(t_fdf *fdf)
+void	ft_init_vals(t_fdf *fdf)
 {
 	fdf->map.x = 0;
 	fdf->map.y = 0;
 	fdf->map.matrice = NULL;
 	fdf->win.win_w = WINDOW_WIDTH;
 	fdf->win.win_h = WINDOW_HEIGHT;
-}
-
-void	ft_set_map(int fd, t_fdf *fdf)
-{
-	fdf->win.mlx = mlx_init();
-	fdf->img.img = mlx_new_image(fdf->win.mlx, fdf->win.win_w, fdf->win.win_h);
-	fdf->win.mlx_win = mlx_new_window(fdf->win.mlx,
-			fdf->win.win_w, fdf->win.win_h, WINDOW_NAME);
-	fdf->img.addr = mlx_get_data_addr(fdf->img.img, &fdf->img.bits_per_pixel,
-			&fdf->img.line_length, &fdf->img.endian);
-	read_map(fd, fdf);
-	mlx_put_image_to_window(fdf->win.mlx, fdf->win.mlx_win, fdf->img.img, 0, 0);
+	fdf->trans.t_x = 0;
+	fdf->trans.t_y = 0;
+	fdf->trans.scale = 1;
+	fdf->trans.zoom = 0;
 }
 
 int	main(int ac, char **av)
@@ -55,8 +47,15 @@ int	main(int ac, char **av)
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 		ft_error("Can't read from this file.");
-	ft_set_values(&fdf);
-	ft_set_map(fd, &fdf);
+	ft_init_vals(&fdf);
+	fdf.win.mlx = mlx_init();
+	fdf.win.mlx_win = mlx_new_window(fdf.win.mlx,
+			fdf.win.win_w, fdf.win.win_h, WINDOW_NAME);
+	read_map(fd, &fdf);
+	draw_map(&fdf);
+	mlx_hook(fdf.win.mlx_win, 17, 0, onclose, &fdf);
+	mlx_key_hook(fdf.win.mlx_win, onkeypress, &fdf);
+	mlx_mouse_hook(fdf.win.mlx_win, onmousemove, &fdf);
 	mlx_loop(fdf.win.mlx);
 	return (0);
 }

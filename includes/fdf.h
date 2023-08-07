@@ -6,7 +6,7 @@
 /*   By: bkaztaou <bkaztaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:19:59 by bkaztaou          #+#    #+#             */
-/*   Updated: 2023/08/06 04:25:06 by bkaztaou         ###   ########.fr       */
+/*   Updated: 2023/08/07 05:00:33 by bkaztaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define WINDOW_NAME "fdf"
 # define WINDOW_WIDTH 1900
 # define WINDOW_HEIGHT 900
-# define ZOOM 25
+# define ZOOM 40
 
 typedef struct s_window
 {
@@ -39,6 +39,7 @@ typedef struct s_map
 	int	x;
 	int	y;
 	int	**matrice;
+	int	row_len;
 }	t_map;
 
 typedef struct s_image
@@ -50,11 +51,19 @@ typedef struct s_image
 	int		endian;
 }	t_image;
 
+typedef struct s_transform {
+	int	t_x;
+	int	t_y;
+	int	scale;
+	int	zoom;
+}	t_transform;
+
 typedef struct s_fdf
 {
 	t_window	win;
 	t_image		img;
 	t_map		map;
+	t_transform	trans;
 }	t_fdf;
 
 typedef struct s_point
@@ -83,5 +92,8 @@ void	bresenhams(t_fdf *fdf, t_point pt);
 void	ft_putpixel(t_fdf *fdf, int x, int y, int color);
 t_point	ft_init_pt(int i, int j, t_fdf *fdf, char dir);
 void	draw_map(t_fdf *fdf);
+int		onkeypress(int key, t_fdf *fdf);
+int		onmousemove(int key, int x, int y, t_fdf *fdf);
+int		onclose(t_fdf *fdf);
 
 #endif
