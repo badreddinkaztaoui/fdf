@@ -6,7 +6,7 @@
 /*   By: bkaztaou <bkaztaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:19:59 by bkaztaou          #+#    #+#             */
-/*   Updated: 2023/08/07 05:00:33 by bkaztaou         ###   ########.fr       */
+/*   Updated: 2023/08/11 12:04:30 by bkaztaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,15 @@ typedef struct s_fdf
 
 typedef struct s_point
 {
-	int	x0;
-	int	y0;
-	int	x1;
-	int	y1;
-	int	z0;
-	int	z1;
-	int	xinc;
-	int	yinc;
-	int	color;
+	float	x0;
+	float	y0;
+	float	x1;
+	float	y1;
+	int		z0;
+	int		z1;
+	float	xinc;
+	float	yinc;
+	int		color;
 }	t_point;
 
 void	read_map(int fd, t_fdf *fdf);

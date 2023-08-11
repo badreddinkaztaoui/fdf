@@ -6,51 +6,33 @@
 /*   By: bkaztaou <bkaztaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:23:35 by bkaztaou          #+#    #+#             */
-/*   Updated: 2023/08/06 02:54:21 by bkaztaou         ###   ########.fr       */
+/*   Updated: 2023/08/11 12:09:12 by bkaztaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static int	set_incs(int p0, int p1)
-{
-	if (p0 < p1)
-		return (1);
-	return (-1);
-}
-
-static int	set_err(int dx, int dy)
-{
-	if (dx > dy)
-		return (dx / 2);
-	return (-dy / 2);
-}
-
 void	bresenhams(t_fdf *fdf, t_point pt)
 {
 	int	dx;
 	int	dy;
-	int	err;
-	int	e2;
+	int	steps;
+	int	i;
 
-	dx = abs(pt.x1 - pt.x0);
-	dy = abs(pt.y1 - pt.y0);
-	pt.xinc = set_incs(pt.x0, pt.x1);
-	pt.yinc = set_incs(pt.y0, pt.y1);
-	err = set_err(dx, dy);
-	while ((pt.x0 - pt.x1) || (pt.y0 - pt.y1))
+	dx = pt.x1 - pt.x0;
+	dy = pt.y1 - pt.y0;
+	if (abs(dx) > abs(dy))
+		steps = abs(dx);
+	else
+		steps = abs(dy);
+	pt.xinc = (float)dx / steps;
+	pt.yinc = (float)dy / steps;
+	i = 0;
+	while (i <= steps)
 	{
-		ft_putpixel(fdf, pt.x0, pt.y0, pt.color);
-		e2 = err;
-		if (e2 > -dx)
-		{
-			err -= dy;
-			pt.x0 += pt.xinc;
-		}
-		if (e2 < dy)
-		{
-			err += dx;
-			pt.y0 += pt.yinc;
-		}
+		ft_putpixel(fdf, round(pt.x0), round(pt.y0), pt.color);
+		pt.x0 += pt.xinc;
+		pt.y0 += pt.yinc;
+		i++;
 	}
 }

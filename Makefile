@@ -6,11 +6,12 @@
 #    By: bkaztaou <bkaztaou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/22 04:19:13 by bkaztaou          #+#    #+#              #
-#    Updated: 2023/08/01 22:30:28 by bkaztaou         ###   ########.fr        #
+#    Updated: 2023/08/11 14:59:18 by bkaztaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
@@ -19,6 +20,7 @@ LIBFT = -Llibft -lft
 RM = rm -rf
 
 FILES = $(wildcard ./src/*.c) $(wildcard ./utils/*.c)
+
 OBJS = $(FILES:.c=.o)
 
 all: $(NAME)
